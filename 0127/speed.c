@@ -9,7 +9,7 @@
 
 #### 실행결과
 거리와 속력 입력 : 420 65 (Enter)
-소요 시가은 6시간 27분.538초입니다.
+소요 시간은 6시간 27분.538초입니다.
 */
 #include<stdio.h>
 int main(void)
@@ -20,6 +20,11 @@ int main(void)
     printf("거리와 속력 입력 :");
     scanf("%d%d", &distance, &speed);               // 거리와 속력 입력받아 저장
     // distance = 420, speed = 65;                  // 디버깅용 변수 저장
+    if (distance <= 0 || speed <= 0) {              // 거리, 속력 예외처리 추가
+        printf("거리 또는 속력은 0보다 커야 합니다.\n");
+        return 0;
+    }
+
     double time = (double)distance / speed;         // 시간을 저장하기 위한 변수 time 추가선언, 거리/속력으로 저장
     // printf("%lf", time);                         // 실수형으로 저장 확인
 
