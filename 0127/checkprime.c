@@ -10,13 +10,17 @@ int prime_check(int num);      // 정수를 인수로 받는 함수 원형 선언
 int main(void){
     prime_check(32767);        // prime_check에 32767을 인자로 호출
     prime_check(19);        // prime_check에 19를 인자로 호출
-
+    prime_check(2);
+    prime_check(-10);
     return 0;
 }
 
 int prime_check(int num){
     int i;
-    for (i = 2; i < num; i++){              // 인자로 넘긴 수를 2부터 num-1까지 나누어 나누어떨어지면 return 0
+    if (num <= 1)                           // 판별할 수가 1 이하일 경우 소수가 아님
+        printf("소수가 아닙니다.\n");
+        return 0;
+    for (i = 2; i * i <= num; i++){         // for문 조건 로직 최적화 (루트num)까지만 루프
         if (num % i == 0){
             printf("소수가 아닙니다.\n");
             return 0;
