@@ -14,7 +14,7 @@
 #include<stdio.h>
 int main(void)
 {
-    int distance, speed, hour, minuet;              // 거리, 속력, 시간 변수 int형으로 선언
+    int distance, speed, hour, minute;              // 거리, 속력, 시간 변수 int형으로 선언
     double second;                                  // 초는 소수점 이하 셋째 자리까지 -> 실수형으로 선언
 
     printf("거리와 속력 입력 :");
@@ -26,10 +26,10 @@ int main(void)
     hour = (int)time;                               // 소수점 뒤를 제외한 시간을 hour에 저장
     time -= hour;                                   // 나머지 시간을 사용하기 위해 hour만큼 차감
     time *= 60;                                     // 분 저장을 위해 시간에 60을 곱함
-    minuet = (int)time;                             // 시간을 저장했던 것처럼 반복
-    time -= minuet;
+    minute = (int)time;                             // 시간을 저장했던 것처럼 반복
+    time -= minute;
     second = time*60;                               // 초는 시간과 분을 계산한 뒤 나머지에 60을 곱함
     // printf("%lf\n", time);                       // 저장된 시간 확인용 출력문
-    printf("소요 시간은 %d시간 %d분 %.3lf초입니다.\n", hour, minuet, second);
+    printf("소요 시간은 %d시간 %d분 %.3lf초입니다.\n", hour, minute, second);
     return 0;
 }
