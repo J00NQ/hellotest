@@ -18,7 +18,18 @@ int main(void)
     double second;                                  // 초는 소수점 이하 셋째 자리까지 -> 실수형으로 선언
 
     printf("거리와 속력 입력 :");
-    scanf("%d%d", &distance, &speed);
-    printf("소요 시간은 %d시간 %d분 %.3lf초입니다.", hour, minuet, second);
+    scanf("%d%d", &distance, &speed);               // 거리와 속력 입력받아 저장
+    // distance = 420, speed = 65;                  // 디버깅용 변수 저장
+    double time = (double)distance / speed;         // 시간을 저장하기 위한 변수 time 추가선언, 거리/속력으로 저장
+    // printf("%lf", time);                         // 실수형으로 저장 확인
+
+    hour = (int)time;                               // 소수점 뒤를 제외한 시간을 hour에 저장
+    time -= hour;                                   // 나머지 시간을 사용하기 위해 hour만큼 차감
+    time *= 60;                                     // 분 저장을 위해 시간에 60을 곱함
+    minuet = (int)time;                             // 시간을 저장했던 것처럼 반복
+    time -= minuet;
+    second = time*60;                               // 초는 시간과 분을 계산한 뒤 나머지에 60을 곱함
+    // printf("%lf\n", time);                       // 저장된 시간 확인용 출력문
+    printf("소요 시간은 %d시간 %d분 %.3lf초입니다.\n", hour, minuet, second);
     return 0;
 }
