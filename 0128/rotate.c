@@ -21,18 +21,18 @@ void rotate(int *pa, int *pb, int *pc);
 int main(void)
 {
     int a = 1, b = 2, c = 3;
-    char next;
+    char next;                          // scanf() 입력받을 변수
     do {
-        printf("%d:%d:%d", a, b, c);
-        scanf("%c", &next);
-        if (next != '\n') break;
-        rotate(&a, &b, &c);
-    } while (1);
+        printf("%d:%d:%d", a, b, c);    // a, b, c 출력
+        scanf("%c", &next);             // next를 문자형으로 입력받음
+        if (next != '\n') break;        // 입력값이 존재하면 (== \n이 아니면) 반복 종료
+        rotate(&a, &b, &c);             // 입력값이 없으면 (== \n) rotate()함수 실행
+    } while (1);                        // 반복
     return 0;
 }
-void rotate(int *pa, int *pb, int *pc){
-    int temp = *pa;
-    *pa = *pb;
-    *pb = *pc;
-    *pc = temp;
+void rotate(int *pa, int *pb, int *pc){ // 주소를 인수로 받는 rotate()함수
+    int temp = *pa;                     // a의 값을 저장할 temp 선언
+    *pa = *pb;                          // b -> a
+    *pb = *pc;                          // c -> b
+    *pc = temp;                         // a -> c 값 변경
 }
