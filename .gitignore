@@ -9,6 +9,8 @@
 *.a
 *.so
 *.dll
+*.ilk
+*.pdb
 
 # ===== CMake =====
 CMakeFiles/
