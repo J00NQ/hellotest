@@ -37,8 +37,8 @@ int main()
         }
 
         // 중복 여부 확인 로직
-        for (int j = 1; j < i; j++){                       // 중첩 for문으로 중복값 판별
-            if (lotto[i] == lotto[j]){                    // i번째 입력받은 값이 i-j번째 값과 같으면
+        for (int j = 1; j < i; j++){                        // 중첩 for문으로 중복값 판별
+            if (lotto[i] == lotto[j]){                      // i번째 입력받은 값이 i-j번째 값과 같으면
                 issame = 1;                                 // 중복여부를 1로 바꾸고
                 break;                                      // 중복 판별 반복문 탈출
             }
