@@ -26,6 +26,10 @@ int main()
         int issame = 0;
         printf("로또번호 입력 : ");
         scanf("%d", &lotto[i]);
+        if ( 1 > lotto[i] || lotto[i] > 45 ){
+            printf("1부터 45까지의 숫자만 입력해주세요.\n");
+            continue;
+        }
         for (int j = 1; j <= i; j++){
             if (lotto[i] == lotto[i-j]){
                 issame = 1;
@@ -36,12 +40,11 @@ int main()
             printf("같은 번호가 있습니다.!\n");
             continue;
         }
-        else
-            i++;
+        i++;
     }
-    printf("입력된 로또번호:");
+    printf("입력된 로또번호 :");
     for (i = 0; i < 6; i++){
-        printf("%d ", lotto[i]);
+        printf(" %d", lotto[i]);
     }
     return 0;
 }
