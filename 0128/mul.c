@@ -20,7 +20,7 @@ int main(void)
 */
 #include<stdio.h>
 void func(int *mod, int *rem);
-int main(int argc, char const *argv[])
+int main(void)
 {
     int mod, rem;
     func(&mod, &rem);
