@@ -19,28 +19,37 @@
 #include<stdio.h>
 int main()
 {
+    // 변수 선언
     int lotto[6];
     int i = 0;
     while (i < 6)
     {
-        int issame = 0;
+        // 지역 변수 선언
+        int issame = 0;                                     // 중복여부를 저장할 변수 초기화
+        // 번호 입력받기
         printf("로또번호 입력 : ");
         scanf("%d", &lotto[i]);
-        if ( 1 > lotto[i] || lotto[i] > 45 ){
+
+        // 입력값 범위 확인 로직
+        if ( 1 > lotto[i] || lotto[i] > 45 ){               // 입력값이 1보다 작거나 45보다 크면 다시 실행
             printf("1부터 45까지의 숫자만 입력해주세요.\n");
             continue;
         }
-        for (int j = 1; j <= i; j++){
-            if (lotto[i] == lotto[i-j]){
-                issame = 1;
-                break;
+
+        // 중복 여부 확인 로직
+        for (int j = 1; j <= i; j++){                       // 중첩 for문으로 중복값 판별
+            if (lotto[i] == lotto[i-j]){                    // i번째 입력받은 값이 i-j번째 값과 같으면
+                issame = 1;                                 // 중복여부를 1로 바꾸고
+                break;                                      // 중복 판별 반복문 탈출
             }
         }
-        if (issame == 1) {
+        if (issame == 1) {                                  // 중복여부가 1일 경우 반복문 다시 실행
             printf("같은 번호가 있습니다.!\n");
             continue;
         }
-        i++;
+        
+        // 증감식
+        i++;                                                // 중복여부가 0이면 증가식 적용
     }
     printf("입력된 로또번호 :");
     for (i = 0; i < 6; i++){
