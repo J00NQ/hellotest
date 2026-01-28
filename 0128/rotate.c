@@ -21,33 +21,18 @@ void rotate(int *pa, int *pb, int *pc);
 int main(void)
 {
     int a = 1, b = 2, c = 3;
-    int* pa = &a;
-    int* pb = &b;
-    int* pc = &c;
-    rotate(pa, pb, pc);
+    char next;
+    do {
+        printf("%d:%d:%d", a, b, c);
+        scanf("%c", &next);
+        if (next != '\n') break;
+        rotate(&a, &b, &c);
+    } while (1);
     return 0;
 }
 void rotate(int *pa, int *pb, int *pc){
-    char next = ' ';
-    int count = 0;
-    while(1){
-        // scanf("%c", &next);
-        // if (next != ){
-        //     break;
-        // }
-        count ++;
-        switch (count % 3)
-        {
-            case 0:
-                printf("%d:%d:%d\n", *pa, *pb, *pc);
-                break;
-            case 1:
-                printf("%d:%d:%d\n", *pb, *pc, *pa);
-                break;
-            case 2:
-                printf("%d:%d:%d\n", *pc, *pa, *pb);
-                break;
-        }
-        
-    }
+    int temp = *pa;
+    *pa = *pb;
+    *pb = *pc;
+    *pc = temp;
 }
