@@ -10,14 +10,14 @@
 */
 #include<stdio.h>
 float get_avg(int v_score[3]);
-int main(int argc, char const *argv[])
+int main()
 {
     int score[5];         // 디버깅용 값 초기화
     // = {7, 9, 4, 8, 5};
     printf("5명 심사위원의 점수 입력: ");
-    scanf("%d%d%d%d%d", &score[0], &score[1], &score[2], &score[3], &score[4]);      // 디버깅용 주석처리
-    // 최고점수와 최저점수를 제외하여 저장할 valueable_score 선언
-    int v_score[3];
+        for (int i = 0; i < 5; i++) {
+        scanf("%d", &score[i]);
+    }
     int i;
     int temp = 0;
     // 버블 정렬로 score 오름차순 정렬
@@ -30,9 +30,11 @@ int main(int argc, char const *argv[])
             }
         }
     }
-    v_score[0] = score[1];
-    v_score[1] = score[2];
-    v_score[2] = score[3];
+        // 최고점수와 최저점수를 제외하여 저장할 valueable_score 선언
+    int v_score[3];
+    for (int i = 0; i < 3; i++) {
+        v_score[i] = score[i + 1]; // score[1], score[2], score[3]
+    }
     printf("유효점수: %d %d %d\n", v_score[0], v_score[1], v_score[2]);
     float avg = get_avg(v_score);
     printf("평균: %.1lf", avg);
@@ -40,12 +42,10 @@ int main(int argc, char const *argv[])
 }
 
 float get_avg(int v_score[3]){
-    int total = 0;
-    float avg;
+    float total = 0;
+
     for (int i = 0; i < 3; i++){
         total += v_score[i];
-    }
-    avg = (float)total / 3;
-
-    return avg;
+    }   
+    return total / 3;
 }
