@@ -1,5 +1,5 @@
 #include<stdio.h>
-int main(int argc, char const *argv[])
+int main(void)
 {
     int a = 12;     // 1100
     int b = 10;     // 1010
