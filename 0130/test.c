@@ -3,7 +3,6 @@
 /*
 #####예정사항#####
 - 입력값 검증 로직 개선 (필요할 때마다 계속 개선)
-- 메뉴를 추가하더라도 작동하도록 length변수 생성, 이에 따라 중첩for문으로 상품 목록 표시 개선 예정
 */
 int main(void){
     int choice;
@@ -45,22 +44,6 @@ int main(void){
                 break;
             }
         }
-        // if(money >= prices[0]){
-        //     for(int i = 0; i < length; i++){
-        //         if (stock[i] > 0)
-        //             printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
-        //     }
-        // } else if(money >= prices[1]){
-        //     for(int i = 1; i < length; i++){
-        //         if (stock[i] > 0)
-        //             printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
-        //     }
-        // } else if(money >= prices[2]){
-        //     for(int i = 2; i < length; i++){
-        //         if (stock[i] > 0)
-        //             printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
-        //     }
-        // } else continue;        // 투입금액이 최소금액 미만일 경우 반복문 재실행
         printf("===============\n");
         
         // 선택 입력
