@@ -19,7 +19,7 @@ int main(void){
         // 금액 투입
         printf("금액을 투입해주세요(-1 입력시 이용종료) : ");
         // 입력값 검증 로직 추가
-        int check;
+        int check;           // 입력값 검증용 변수
         check = scanf("%d", &inMoney);
         if(check != 1 || inMoney < -1){
             printf("올바른 금액을 입력해주세요.\n");
@@ -47,7 +47,11 @@ int main(void){
         // 선택 입력
         while(1){
             printf("음료를 선택하세요: ");
-            scanf("%d", &choice);
+            check = scanf("%d", &choice);
+            if(check != 1){
+                getchar();
+                continue;
+            }
             if(prices[choice - 1] > money) {
                 printf("다른 메뉴를 선택해주세요.\n");
                 continue;
