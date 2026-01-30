@@ -2,15 +2,16 @@
 #include <stdio.h>
 /*
 #####예정사항#####
-- 입력값 검증 로직 추가 (완료)
-- 하드코딩된 상품표시 부분 개선
-- 구매내역 및 상품재고 처리(우선순위 낮음)
+- 입력값 검증 로직 개선 (필요할 때마다 계속 개선)
+- 하드코딩된 상품표시 부분, 상품선택 부분 개선
+- 구매내역 및 상품재고 처리 (우선순위 낮음)
 */
 int main(void){
     int choice;
     // 상품 정보
     char* names[] = {"콜라", "사이다", "커피"};
     int prices[] = {1200, 1000, 800};
+    int stock[] = {5, 4, 3};                 // 재고 배열 추가
     // 금액 변수 선언
     int money = 0;  // 초기금액 및 잔고 변수
     int inMoney;    // 투입금액 변수
@@ -32,14 +33,14 @@ int main(void){
         printf("=== 자판기 ===\n");
         printf("현재 잔액: %d원\n", money);
         if(money >= 1200){       // 현재 상품 종류가 적어 하드코딩하였지만 가격대별 배열로 처리 가능
-            printf("1. %s - %d원\n", names[0], prices[0]);
-            printf("2. %s - %d원\n", names[1], prices[1]);
-            printf("3. %s - %d원\n", names[2], prices[2]);      
+            printf("1. %s - %d원, %d개 남음\n", names[0], prices[0], stock[0]);
+            printf("2. %s - %d원, %d개 남음\n", names[1], prices[1], stock[1]);
+            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);      
         } else if(money >= 1000){
-            printf("2. %s - %d원\n", names[1], prices[1]);
-            printf("3. %s - %d원\n", names[2], prices[2]);
+            printf("2. %s - %d원, %d개 남음\n", names[1], prices[1], stock[1]);
+            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);
         } else if(money >= 800){
-            printf("3. %s - %d원\n", names[2], prices[2]);
+            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);
         } else continue;        // 투입금액이 800원 미만일 경우 반복문 재실행
         printf("===============\n");
 
@@ -48,7 +49,7 @@ int main(void){
         while(1){
             printf("음료를 선택하세요: ");
             check = scanf("%d", &choice);
-            if(check != 1){
+            if(check != 1 || choice < 1 || choice > 3){
                 getchar();
                 continue;
             }
@@ -61,6 +62,7 @@ int main(void){
         // 선택 확인
         printf("\n[%s]를 선택하셨습니다. %d원입니다.\n",
             names[choice - 1], prices[choice - 1]);
+        stock[choice - 1] -= 1;
         money -= prices[choice - 1];
         printf("현재 잔액 : %d원\n", money);
     }
