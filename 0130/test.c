@@ -14,8 +14,8 @@ int main(void){
         // 금액 투입
         printf("금액을 투입해주세요 : ");
         scanf("%d", &inMoney);
-        money += inMoney;       // 잔고 += 투입금액
-        if(inMoney == 0) break; // 투입금액이 0일 경우 반복 종료
+        if(inMoney == -1) break; // 투입금액이 -1일 경우 반복 종료
+        money += inMoney;        // 잔고 += 투입금액
         // 메뉴 출력
         printf("=== 자판기 ===\n");
         if(money >= 1200){
@@ -37,15 +37,20 @@ int main(void){
         // printf("3. %s - %d원\n", names[2], prices[2]);
         
         // 선택 입력
-        for(int i = 0; i < n; i++){
-            
-        }
-        printf("음료를 선택하세요: ");
-        scanf("%d", &choice);
+        while(1){
+            printf("음료를 선택하세요: ");
+            scanf("%d", &choice);
+            if(prices[choice - 1] > money) {
+                printf("다른 메뉴를 선택해주세요.\n");
+                continue;
+            }
+            else break;
+        }        
         // 선택 확인
         printf("\n[%s]를 선택하셨습니다. %d원입니다.\n",
             names[choice - 1], prices[choice - 1]);
-
+        money -= prices[choice - 1];
+        printf("현재 잔액 : %d\n", money);
     }
     printf("이용해주셔서 감사합니다.\n");
     return 0;
