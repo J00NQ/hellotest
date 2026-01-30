@@ -3,8 +3,7 @@
 /*
 #####예정사항#####
 - 입력값 검증 로직 개선 (필요할 때마다 계속 개선)
-- 하드코딩된 상품표시 부분, 상품선택 부분 개선
-- 구매내역 및 상품재고 처리 (우선순위 낮음)
+- 메뉴를 추가하더라도 작동하도록 length변수 생성, 이에 따라 중첩for문으로 상품 목록 표시 개선 예정
 */
 int main(void){
     int choice;
@@ -42,12 +41,12 @@ int main(void){
                     printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
             }
         } else if(money >= prices[1]){
-            for(int i = 1; i < 3; i++){
+            for(int i = 1; i < length; i++){
                 if (stock[i] > 0)
                     printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
             }
         } else if(money >= prices[2]){
-            for(int i = 2; i < 3; i++){
+            for(int i = 2; i < length; i++){
                 if (stock[i] > 0)
                     printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
             }
@@ -63,7 +62,7 @@ int main(void){
                 reMoney = 1;
                 break;
             }
-            if(check != 1 || choice < 1 || choice > 3){
+            if(check != 1 || choice < 1 || choice > length){
                 getchar();
                 continue;
             }
@@ -82,7 +81,7 @@ int main(void){
         printf("현재 잔액 : %d원\n", money);
         // 모든 재고가 0이면 자동으로 종료
         int remain_stock = 0;
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < length; i++){
             remain_stock += stock[i];
         }
         if(remain_stock == 0) break;
