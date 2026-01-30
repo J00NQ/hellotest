@@ -12,6 +12,8 @@ int main(void){
     char* names[] = {"콜라", "사이다", "커피"};
     int prices[] = {1200, 1000, 800};
     int stock[] = {5, 4, 3};                 // 재고 배열 추가
+    int length;
+    length = sizeof(names) / sizeof(names[0]);
     // 금액 변수 선언
     int money = 0;  // 초기금액 및 잔고 변수
     int inMoney;    // 투입금액 변수
@@ -35,7 +37,7 @@ int main(void){
         printf("=== 자판기 ===\n");
         printf("현재 잔액: %d원\n", money);
         if(money >= prices[0]){
-            for(int i = 0; i < 3; i++){
+            for(int i = 0; i < length; i++){
                 if (stock[i] > 0)
                     printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
             }
@@ -53,9 +55,14 @@ int main(void){
         printf("===============\n");
         
         // 선택 입력
+        int reMoney = 0;
         while(1){
-            printf("음료를 선택하세요: ");
+            printf("음료를 선택하세요: (-1 입력시 금액 투입 단계로 돌아갑니다.)");
             check = scanf("%d", &choice);
+            if(choice == -1) {
+                reMoney = 1;
+                break;
+            }
             if(check != 1 || choice < 1 || choice > 3){
                 getchar();
                 continue;
@@ -65,11 +72,12 @@ int main(void){
                 continue;
             }
             else break;
-        }        
+        }
+        if(reMoney == 1) continue;
         // 선택 확인
         printf("\n[%s]를 선택하셨습니다. %d원입니다.\n",
             names[choice - 1], prices[choice - 1]);
-        stock[choice - 1] -= 1;
+        stock[choice - 1]--;
         money -= prices[choice - 1];
         printf("현재 잔액 : %d원\n", money);
         // 모든 재고가 0이면 자동으로 종료
