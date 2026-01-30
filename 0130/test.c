@@ -1,9 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 /*
-예정사항
-- 입력값 검증 로직 추가
-- 하드코딩된 금액비교 부분 개선
+#####예정사항#####
+- 입력값 검증 로직 추가 (완료)
+- 하드코딩된 상품표시 부분 개선
+- 구매내역 및 상품재고 처리(우선순위 낮음)
 */
 int main(void){
     int choice;
@@ -17,7 +18,14 @@ int main(void){
     while(1){
         // 금액 투입
         printf("금액을 투입해주세요(-1 입력시 이용종료) : ");
-        scanf("%d", &inMoney);
+        // 입력값 검증 로직 추가
+        int check;
+        check = scanf("%d", &inMoney);
+        if(check != 1 || inMoney < -1){
+            printf("올바른 금액을 입력해주세요.\n");
+            getchar();           // 잘못된 자료형 입력에 대한 버퍼 초기화
+            continue;            // 잔고에 추가하기 전에 반복문 재실행
+        }
         if(inMoney == -1) break; // 투입금액이 -1일 경우 반복 종료
         money += inMoney;        // 잔고 += 투입금액
         // 메뉴 출력
