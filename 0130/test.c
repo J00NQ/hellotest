@@ -15,12 +15,14 @@ int main(void){
     // 금액 변수 선언
     int money = 0;  // 초기금액 및 잔고 변수
     int inMoney;    // 투입금액 변수
-    
+
     while(1){
         // 금액 투입
         printf("금액을 투입해주세요(-1 입력시 이용종료) : ");
         // 입력값 검증 로직 추가
         int check;           // 입력값 검증용 변수
+        inMoney = 0;
+        
         check = scanf("%d", &inMoney);
         if(check != 1 || inMoney < -1){
             printf("올바른 금액을 입력해주세요.\n");
@@ -32,18 +34,23 @@ int main(void){
         // 메뉴 출력
         printf("=== 자판기 ===\n");
         printf("현재 잔액: %d원\n", money);
-        if(money >= 1200){       // 현재 상품 종류가 적어 하드코딩하였지만 가격대별 배열로 처리 가능
-            printf("1. %s - %d원, %d개 남음\n", names[0], prices[0], stock[0]);
-            printf("2. %s - %d원, %d개 남음\n", names[1], prices[1], stock[1]);
-            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);      
-        } else if(money >= 1000){
-            printf("2. %s - %d원, %d개 남음\n", names[1], prices[1], stock[1]);
-            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);
-        } else if(money >= 800){
-            printf("3. %s - %d원, %d개 남음\n", names[2], prices[2], stock[2]);
-        } else continue;        // 투입금액이 800원 미만일 경우 반복문 재실행
+        if(money >= prices[0]){
+            for(int i = 0; i < 3; i++){
+                if (stock[i] > 0)
+                    printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
+            }
+        } else if(money >= prices[1]){
+            for(int i = 1; i < 3; i++){
+                if (stock[i] > 0)
+                    printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
+            }
+        } else if(money >= prices[2]){
+            for(int i = 2; i < 3; i++){
+                if (stock[i] > 0)
+                    printf("%d. %s - %d원, %d개 남음\n", i+1, names[i], prices[i], stock[i]);
+            }
+        } else continue;        // 투입금액이 최소금액 미만일 경우 반복문 재실행
         printf("===============\n");
-
         
         // 선택 입력
         while(1){
@@ -53,7 +60,7 @@ int main(void){
                 getchar();
                 continue;
             }
-            if(prices[choice - 1] > money) {
+            if(prices[choice - 1] > money || stock[choice - 1] <= 0) {       // 잔액과 재고 체크
                 printf("다른 메뉴를 선택해주세요.\n");
                 continue;
             }
@@ -65,6 +72,12 @@ int main(void){
         stock[choice - 1] -= 1;
         money -= prices[choice - 1];
         printf("현재 잔액 : %d원\n", money);
+        // 모든 재고가 0이면 자동으로 종료
+        int remain_stock = 0;
+        for(int i = 0; i < 3; i++){
+            remain_stock += stock[i];
+        }
+        if(remain_stock == 0) break;
     }
     printf("이용해주셔서 감사합니다. 거스름돈: %d원\n", money);
     return 0;
